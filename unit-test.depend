@@ -1,0 +1,71 @@
+# depslib dependency file v1.0
+1680120130 source:c:\mg\prj\unit-test\main.cpp
+	<iostream>
+
+1680120053 source:c:\mg\prj\unit-test\test.cpp
+	"test.hpp"
+	"..\cpplib\constants.hpp"
+
+1680059617 c:\mg\prj\unit-test\test.hpp
+	"..\cpplib\constants.hpp"
+	"..\cpplib\name.hpp"
+	"..\cpplib\generator.hpp"
+	"..\cpplib\macros.hpp"
+	"..\cpplib\string_def.hpp"
+	"..\cpplib\string_util.hpp"
+	"..\cpplib\error.hpp"
+	<string>
+	<stdexcept>
+	<sstream>
+	<unordered_map>
+	<queue>
+	<iostream>
+
+1679922275 c:\mg\prj\cpplib\constants.hpp
+	<cstdint>
+
+1680120054 c:\mg\prj\cpplib\name.hpp
+	"object.hpp"
+	"string_def.hpp"
+
+1679759819 c:\mg\prj\cpplib\object.hpp
+	"constants.hpp"
+	<iostream>
+
+1680120054 c:\mg\prj\cpplib\string_def.hpp
+	<string>
+
+1680120053 c:\mg\prj\cpplib\generator.hpp
+	"object.hpp"
+	"error.hpp"
+
+1680120053 c:\mg\prj\cpplib\error.hpp
+	"string_def.hpp"
+	"object.hpp"
+	<stdexcept>
+	<sstream>
+
+1680120053 c:\mg\prj\cpplib\macros.hpp
+
+1680120054 c:\mg\prj\cpplib\string_util.hpp
+	<vcl.h>
+	<string>
+	<vector>
+	<algorithm>
+	<functional>
+	<locale>
+	<cmath>
+	<iomanip>
+	<cctype>
+	<cwctype>
+	<memory>
+	<sstream>
+	<cassert>
+	"log.hpp"
+
+1679926230 c:\mg\prj\cpplib\log.hpp
+	"macros.hpp"
+	<iostream>
+	<fstream>
+	<string>
+
