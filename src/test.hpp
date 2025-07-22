@@ -5,6 +5,7 @@
 #include <winsock2.h>
 
 #include "../../cpplib/src/constant.hpp"
+#include "../../cpplib/src/string_def.hpp"
 
 #include "../../cpplib/src/generator.hpp"
 #include "../../cpplib/src/macros.hpp"
@@ -37,7 +38,7 @@ namespace pensar_digital
         class Failure : Error
         {
             public:
-                //inline static const pd::VersionPtr VERSION = pd::Version::get (1, 1, 1);
+                //inline static const pd::Version::Ptr VERSION = pd::Version::get (1, 1, 1);
             using Error::get_error_message;
             Failure (const Id id,
                      const std::basic_string<C>&     name,
@@ -74,7 +75,7 @@ namespace pensar_digital
                 S name;
             public:
                 static constexpr double DEFAULT_DELTA = 0.0000001; // Added default delta
-                //inline static const VersionPtr VERSION = pd::Version::get (1, 1, 1);
+                //inline static const Version::Ptr VERSION = pd::Version::get (1, 1, 1);
                 typedef Test T;
 
             /// Constructor.
@@ -304,7 +305,7 @@ namespace pensar_digital
         class CompositeTest : public Test
         {
             public:
-			inline static const VersionPtr VERSION = pd::Version::get (1, 1, 1);
+			inline static const Version::Ptr VERSION = pd::Version::get (1, 1, 1);
             typedef Test T;
             typedef std::unordered_map<Id, T*> UnorderedTestMap;
             typedef std::priority_queue<T*> OrderedTestQueue;
@@ -466,7 +467,15 @@ namespace pensar_digital
                                  error_message,             \
                                  __FILEW__,                  \
                                  __LINE__);
+       
+        inline Generator<CompositeTest> CompositeTest::generator = Generator<CompositeTest>();
+        inline Generator<Test> Test::generator = Generator<Test>();
 
+        inline CompositeTest& all_tests()
+        {
+            static CompositeTest* all = new CompositeTest(W("All tests"));
+            return *all;
+        }
             }  // namespace unit_test
  }  // namespace pensar_digital
 
