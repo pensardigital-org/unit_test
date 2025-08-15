@@ -15,7 +15,6 @@
 #include "../../cpplib/src/stop_watch.hpp"
 #include "../../cpplib/src/path.hpp"
 #include "../../cpplib/src/stream_util.hpp"
-#include "../../cpplib/src/version.hpp"
 
 #include <string>
 #include <stdexcept>
@@ -75,7 +74,9 @@ namespace pensar_digital
                 S name;
             public:
                 static constexpr double DEFAULT_DELTA = 0.0000001; // Added default delta
-                //inline static const Version::Ptr VERSION = pd::Version::get (1, 1, 1);
+                inline static const ClassInfo INFO = { CPPLIB_NAMESPACE, W("Test"), 1, 1, 1 };
+                inline virtual const ClassInfo* info_ptr() const noexcept { return &INFO; }
+
                 typedef Test T;
 
             /// Constructor.
@@ -305,7 +306,9 @@ namespace pensar_digital
         class CompositeTest : public Test
         {
             public:
-			inline static const Version::Ptr VERSION = pd::Version::get (1, 1, 1);
+                inline static const ClassInfo INFO = { CPPLIB_NAMESPACE, W("CompositeTest"), 1, 1, 1 };
+                inline virtual const ClassInfo* info_ptr() const noexcept { return &INFO; }
+
             typedef Test T;
             typedef std::unordered_map<Id, T*> UnorderedTestMap;
             typedef std::priority_queue<T*> OrderedTestQueue;
@@ -425,7 +428,8 @@ namespace pensar_digital
                       class Test ## name : public Test\
                       {                                            \
                         public:                                    \
-                        inline static const Version VERSION = Version (1, 1, 1); \
+                            inline static const ClassInfo INFO = { CPPLIB_NAMESPACE, W("Object"), 2, 1, 1 };\
+                            inline virtual const ClassInfo* info_ptr() const noexcept { return &INFO; }\
                         Test ## name ()                            \
                         : Test (W(#name)){all_tests ().add(this);};             \
                         bool run ()                                \
@@ -439,8 +443,9 @@ namespace pensar_digital
                       class Test##name : public Test               \
                       {                                            \
                         public:                                    \
-                        inline static const Version VERSION = Version (1, 1, 1); \
-                        Test##name ()                              \
+                             inline static const ClassInfo INFO = { CPPLIB_NAMESPACE, W("Object"), 2, 1, 1 };\
+                            inline virtual const ClassInfo* info_ptr() const noexcept { return &INFO; }\
+                       Test##name ()                              \
                         : Test (W(#name)){is_enabled ? enable () : disable ();all_tests ().add(this);};      \
                         bool run ()                                \
                         {
